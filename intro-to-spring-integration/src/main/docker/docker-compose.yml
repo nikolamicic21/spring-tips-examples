@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  rabbitmq:
+    container_name: some-rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    image: 'rabbitmq:3-management'
+  pure-ftpd:
+    container_name: ftpd_server
+    ports:
+      - '21:21'
+      - '30000-30009:30000-30009'
+    environment:
+      - FTP_USER_NAME=user
+      - FTP_USER_PASS=password
+      - FTP_USER_HOME=/home/user
+      - PUBLICHOST=localhost
+    image: stilliard/pure-ftpd
