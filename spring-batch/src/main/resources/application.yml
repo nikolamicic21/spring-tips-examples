@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    initialization-mode: ALWAYS
+    url: jdbc:mysql://localhost:3306/batch?useSSL=false
+    username: root
+    password: password
+  batch:
+    initialize-schema: ALWAYS
+  jpa:
+    hibernate:
+      ddl-auto: false
