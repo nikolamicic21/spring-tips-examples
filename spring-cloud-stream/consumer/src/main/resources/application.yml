@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        producer:
+          destination: greetings
+          group: greetings.consumer
+          durable-subscription: true

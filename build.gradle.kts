@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	kotlin("jvm") version "1.4.21"
 	kotlin("plugin.spring") version "1.4.21"
+	kotlin("plugin.jpa") version "1.4.21"
 }
 
 allprojects {
@@ -13,6 +14,7 @@ allprojects {
 	apply(plugin = "io.spring.dependency-management")
 	apply(plugin = "org.jetbrains.kotlin.jvm")
 	apply(plugin = "org.jetbrains.kotlin.plugin.spring")
+	apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
 
 	group = "io.mickeckemi21"
 	version = "0.0.1-SNAPSHOT"
@@ -22,8 +24,17 @@ allprojects {
 		targetCompatibility = JavaVersion.VERSION_1_8
 	}
 
+	extra["springCloudVersion"] = "2020.0.0"
+
 	repositories {
+		maven { url = uri("https://repo.spring.io/milestone") }
 		mavenCentral()
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+		}
 	}
 
 	configurations {
