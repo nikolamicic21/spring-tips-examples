@@ -1,0 +1,30 @@
+#
+spring:
+  cloud:
+    stream:
+      function:
+        definition: pageViewEventSupplier; pageViewEventProcessor; pageCountSink
+      kafka:
+        streams:
+          binder:
+            configuration:
+              commit.interval.mms: 1000
+            functions:
+              pageViewEventProcessor:
+                application-id: pv-in
+              pageCountSink:
+                application-id: pc-in
+      bindings:
+        # page-views-out
+        pageViewEventSupplier-out-0:
+          destination: page-views
+        # page-views-in
+        pageViewEventProcessor-in-0:
+          destination: page-views
+        # page-count-out
+        pageViewEventProcessor-out-0:
+          destination: page-count
+        # page-count-in
+        pageCountSink:
+          destination: page-count
+          group: page-count-group
