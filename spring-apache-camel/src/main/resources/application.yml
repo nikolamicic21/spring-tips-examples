@@ -1,0 +1,22 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+    camelroutecontroller:
+      enabled: true
+    camelroutes:
+      enabled: true
+      read-only: false
+
+camel:
+  springboot:
+    main-run-controller: true
+    name: apache-camel-spring-boot
+
+logging:
+  level:
+    org.apache.camel.spring.boot.actuate.*: TRACE
