@@ -1,0 +1,18 @@
+<html lang="en">
+<body>
+<div id="update"></div>
+<script>
+    window.addEventListener('load', function (e) {
+        const update = document.getElementById('update');
+        const name = window.prompt('who should we greet?');
+        const ws = new WebSocket('ws://localhost:8081/ws/greeting/')
+        ws.addEventListener('open', function (e) {
+            ws.send(name)
+        })
+        ws.addEventListener('message', function (msg) {
+            update.innerHTML = '<h1>' + msg.data + '</h1>';
+        })
+    })
+</script>
+</body>
+</html>
