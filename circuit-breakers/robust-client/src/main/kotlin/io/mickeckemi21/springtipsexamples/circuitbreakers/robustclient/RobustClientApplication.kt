@@ -49,10 +49,10 @@ class HystrixShakyBusinessService : ShakyBusinessService {
 
     @HystrixCommand(fallbackMethod = "fallback")
     override fun deriveNumber(): Int {
-        log.info("calling deriveNumber()");
+        log.info("calling deriveNumber()")
         if (Math.random() > .5) {
-            Thread.sleep(1000 * 3);
-            throw BoomException("Boom!");
+            Thread.sleep(1000 * 3)
+            throw BoomException("Boom!")
         }
         return 1
     }
@@ -70,10 +70,10 @@ class RetryShakyBusinessService : ShakyBusinessService {
 
     @Retryable(include = [BoomException::class])
     override fun deriveNumber(): Int {
-        log.info("calling deriveNumber()");
+        log.info("calling deriveNumber()")
         if (Math.random() > .5) {
-            Thread.sleep(1000 * 3);
-            throw BoomException("Boom!");
+            Thread.sleep(1000 * 3)
+            throw BoomException("Boom!")
         }
         return 1
     }
@@ -92,15 +92,13 @@ class CircuitBreakerRetryShakyBusinessService : ShakyBusinessService {
 
     @CircuitBreaker(include = [BoomException::class], openTimeout = 2000L, maxAttempts = 1)
     override fun deriveNumber(): Int {
-        log.info("calling deriveNumber()");
+        log.info("calling deriveNumber()")
         if (Math.random() > .5) {
-            Thread.sleep(1000 * 3);
-            throw BoomException("Boom!");
+            Thread.sleep(1000 * 3)
+            throw BoomException("Boom!")
         }
         return 1
     }
 }
 
-class BoomException(message: String?) : RuntimeException(message) {
-
-}
+class BoomException(message: String) : RuntimeException(message)
