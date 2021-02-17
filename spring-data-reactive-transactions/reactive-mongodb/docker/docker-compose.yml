@@ -1,0 +1,9 @@
+version: '3.1'
+
+services:
+  mongodb:
+    image: krnbr/mongo:latest
+    restart: always
+    command: mongod --replSet rs0 --port 27017
+    ports:
+      - 27017:27017

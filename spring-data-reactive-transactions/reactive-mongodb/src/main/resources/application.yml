@@ -1,0 +1,4 @@
+#spring:
+#  data:
+#    mongodb:
+#      replica-set-name: rs0
