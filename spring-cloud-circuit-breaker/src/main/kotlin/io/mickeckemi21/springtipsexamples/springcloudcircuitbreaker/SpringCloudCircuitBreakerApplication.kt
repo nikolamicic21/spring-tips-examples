@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.cloud.circuitbreaker.resilience4j.ReactiveResilience4JCircuitBreakerFactory
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JConfigBuilder
+import org.springframework.cloud.client.circuitbreaker.ConfigBuilder
 import org.springframework.cloud.client.circuitbreaker.ReactiveCircuitBreakerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Service
@@ -21,7 +22,7 @@ import java.time.Duration
 class SpringCloudCircuitBreakerApplication {
 
     @Bean
-    fun resilience4JCircuitBreakerFactory(): ReactiveResilience4JCircuitBreakerFactory =
+    fun resilience4JCircuitBreakerFactory(): ReactiveCircuitBreakerFactory<*, out ConfigBuilder<*>> =
         ReactiveResilience4JCircuitBreakerFactory().apply {
             configureDefault { id ->
                 Resilience4JConfigBuilder(id)
@@ -45,7 +46,7 @@ fun main(args: Array<String>) {
 @RestController
 class FailingGreetingRestController(
     private val failingGreetingService: FailingGreetingService,
-    circuitBreakerFactory: ReactiveResilience4JCircuitBreakerFactory
+    circuitBreakerFactory: ReactiveCircuitBreakerFactory<*, out ConfigBuilder<*>>
 ) {
 
     private val circuitBreaker = circuitBreakerFactory.create("greeting")
