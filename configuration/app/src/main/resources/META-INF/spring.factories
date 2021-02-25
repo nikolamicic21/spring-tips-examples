@@ -1,0 +1,2 @@
+org.springframework.context.ApplicationContextInitializer=\
+  io.mickeckemi21.springtipsexamples.configuration.app.CustomBootifulPropertySourceContextInitializer

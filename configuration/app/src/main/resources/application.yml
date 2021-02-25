@@ -1,0 +1,15 @@
+message-from-application-yml: Hello
+#greeting-message: Application Hello
+spring:
+  datasource:
+    url: jdbc:postgresql//${DB_HOST:localhost}/${DB_NAME:test}
+bootiful:
+  message: Hello from @ConfigurationProperties
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

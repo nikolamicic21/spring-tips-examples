@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: bootiful
+  config:
+    import: configserver:http://localhost:8888/
+  cloud:
+    config:
+      profile: default,dev
+    vault:
+      host: localhost
+      port: 8200
+      scheme: http
+      token: myroot
+      authentication: TOKEN
+      uri: http://localhost:8200
+      connection-timeout: 2000
+      read-timeout: 2000
