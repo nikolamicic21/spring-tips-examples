@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  io.mickeckemi21.springtipsexamples.organizationalconsistency.numbers.NumbersAutoConfiguration
