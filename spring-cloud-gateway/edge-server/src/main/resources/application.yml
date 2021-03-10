@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: edge-server
+
+server:
+  port: 9090
+
+eureka:
+  client:
+    register-with-eureka: false
