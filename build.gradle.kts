@@ -28,6 +28,7 @@ allprojects {
 
 	repositories {
 		maven { url = uri("https://repo.spring.io/milestone") }
+		maven { url = uri("https://dl.bintray.com/kotlin/exposed/") }
 		mavenCentral()
 	}
 
