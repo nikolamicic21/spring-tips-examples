@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    gateway:
+      metrics:
+        enabled: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: guides-yml
+          predicates:
+            - Path=/guides-yaml
+            - After=2020-12-31T23:59:59.999-00:00[Europe/Belgrade]
+          filters:
+            - SetPath=/guides
+          uri: https://spring.io
